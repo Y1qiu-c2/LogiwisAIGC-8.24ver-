@@ -95,7 +95,7 @@ def _launch_demo(args, model, tokenizer):
 
         print(f"History: {_task_history}")
         _task_history.append((_query, full_response))
-        print(f"Qwen2-Instruct: {full_response}")
+        print(f"天睿大模型: {full_response}")
 
     def regenerate(_chatbot, _task_history):
         if not _task_history:
@@ -115,22 +115,14 @@ def _launch_demo(args, model, tokenizer):
         return _chatbot
 
     with gr.Blocks() as demo:
-        gr.Markdown("""\
-<p align="center"><img src="https://qianwen-res.oss-accelerate-overseas.aliyuncs.com/logo_qwen2.png" style="height: 80px"/><p>""")
-        gr.Markdown("""<center><font size=8>Qwen2 Chat Bot</center>""")
+        gr.Markdown("""<center><font size=8> Logiwis AIGC</center>""")
         gr.Markdown(
             """\
-<center><font size=3>This WebUI is based on Qwen2-Instruct, developed by Alibaba Cloud. \
-(本WebUI基于Qwen2-Instruct打造，实现聊天机器人功能。)</center>""")
-        gr.Markdown("""\
-<center><font size=4>
-Qwen2-7B-Instruct <a href="https://modelscope.cn/models/qwen/Qwen2-7B-Instruct/summary">🤖 </a> | 
-<a href="https://huggingface.co/Qwen/Qwen2-7B-Instruct">🤗</a>&nbsp ｜ 
-Qwen2-72B-Instruct <a href="https://modelscope.cn/models/qwen/Qwen2-72B-Instruct/summary">🤖 </a> | 
-<a href="https://huggingface.co/Qwen/Qwen2-72B-Instruct">🤗</a>&nbsp ｜ 
-&nbsp<a href="https://github.com/QwenLM/Qwen2">Github</a></center>""")
+<center><font size=3>This WebUI is based on  LogiwisAIGC, developed by Logiwis. \
+(本WebUI基于天睿大模型打造，实现聊天机器人功能。)</center>""")
 
-        chatbot = gr.Chatbot(label='Qwen2-Instruct', elem_classes="control-height")
+
+        chatbot = gr.Chatbot(label='天睿大模型', elem_classes="control-height")
         query = gr.Textbox(lines=2, label='Input')
         task_history = gr.State([])
 
@@ -145,10 +137,10 @@ Qwen2-72B-Instruct <a href="https://modelscope.cn/models/qwen/Qwen2-72B-Instruct
         regen_btn.click(regenerate, [chatbot, task_history], [chatbot], show_progress=True)
 
         gr.Markdown("""\
-<font size=2>Note: This demo is governed by the original license of Qwen2. \
+<font size=2>Note: This demo is governed by the original license of LogiwisAIGC. \
 We strongly advise users not to knowingly generate or allow others to knowingly generate harmful content, \
 including hate speech, violence, pornography, deception, etc. \
-(注：本演示受Qwen2的许可协议限制。我们强烈建议，用户不应传播及不应允许他人传播以下内容，\
+(注：本演示受天睿大模型的许可协议限制。我们强烈建议，用户不应传播及不应允许他人传播以下内容，\
 包括但不限于仇恨言论、暴力、色情、欺诈相关的有害信息。)""")
 
     demo.queue().launch(
