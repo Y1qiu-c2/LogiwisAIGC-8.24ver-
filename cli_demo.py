@@ -9,7 +9,7 @@ import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer, TextIteratorStreamer
 from transformers.trainer_utils import set_seed
 os.environ['TERM'] = 'xterm-256color'
-DEFAULT_CKPT_PATH = '/Users/qiuyipeng/Desktop/test'
+DEFAULT_CKPT_PATH = '/Users/qiuyipeng/Desktop/LogiwisAIGC/test'
 
 _WELCOME_MSG = '''\
 (欢迎使用天睿大模型，输入内容即可进行对话，:h 显示命令帮助。)
@@ -70,7 +70,7 @@ def _load_model_tokenizer(args):
         device_map=device_map,
         resume_download=True,
     ).eval()
-    model.generation_config.max_new_tokens = 2048    # For chat.
+    model.generation_config.max_new_tokens = 512    # For chat.
 
     return model, tokenizer
 
@@ -101,7 +101,7 @@ def _print_history(history):
 def _get_input() -> str:
     while True:
         try:
-            message = input('User> ').strip()
+            message = input('用户> ').strip()
         except UnicodeDecodeError:
             print('[ERROR] Encoding error in input')
             continue
